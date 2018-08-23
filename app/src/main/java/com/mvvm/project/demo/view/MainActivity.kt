@@ -43,7 +43,7 @@ class MainActivity : BaseActivity() {
         mAdapter.setOnItemClickListener { _, _, position ->
             val item = mAdapter.getItem(position)
             if (item != null && item is MainResult) {
-                ToastUtils.show(item.abstract)
+                ToastUtils.show(item.title)
             }
         }
     }
@@ -86,6 +86,7 @@ class MainActivity : BaseActivity() {
 
     fun finalDo() {
         srl_refresh_view?.isRefreshing = false
+        mAdapter.loadMoreComplete()
     }
 
     private fun showLoadEnd(list: ArrayList<MainResult>) {
@@ -119,7 +120,7 @@ class MainActivity : BaseActivity() {
     private val mAdapter: BaseQuickAdapter<MainResult, BaseViewHolder> by lazy {
         object : BaseQuickAdapter<MainResult, BaseViewHolder>(R.layout.item_list_main) {
             override fun convert(holder: BaseViewHolder, item: MainResult) {
-                holder.setText(R.id.tv_item, item.abstract)
+                holder.setText(R.id.tv_item, item.title)
             }
         }
     }
