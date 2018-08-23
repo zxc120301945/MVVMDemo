@@ -1,0 +1,1 @@
+ViewModel:通过LiveData和Observable实现对View的生命周期检测、数据和View之间的相互绑定

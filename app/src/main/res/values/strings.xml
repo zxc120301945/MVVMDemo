@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MVVMProject</string>
+    <string name="network_not_available">当前网络不可用，请检查你的网络设置</string>
+
+</resources>

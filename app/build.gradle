@@ -1,0 +1,81 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.mvvm.project.demo"
+        minSdkVersion 18
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //不是kotlin那就用这个注释解析器
+//        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+//    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    compile rootProject.ext.dependencies["KOTLIN"]
+
+    compile rootProject.ext.dependencies["CONTRAINT_LAYOUT"]
+
+    //lifecycle
+    compile rootProject.ext.dependencies["RXLIFECYCLE_KOTLIN"]
+    compile rootProject.ext.dependencies["RXLIFECYCLE_COMPONENTS"]
+    compile rootProject.ext.dependencies["LIFECYCLE_EXTENSION"]
+
+    //fresco 各种支持
+    compile rootProject.ext.dependencies["FRESCO"]
+    compile rootProject.ext.dependencies["ANIMATED_BASE"]
+    compile rootProject.ext.dependencies["ANIMATED_GIF"]
+    compile rootProject.ext.dependencies["ANIMATED_WEBP"]
+    compile rootProject.ext.dependencies["WEBPSUPPORT"]
+    compile rootProject.ext.dependencies["DRAWEE_SPAN"]
+    compile rootProject.ext.dependencies["IMAGEPIPELINE_OKHTTP3"]
+
+    //网络
+    compile rootProject.ext.dependencies["OKHTTP"]
+    compile rootProject.ext.dependencies["LOGGING_INTERCEPTOR"]
+    compile rootProject.ext.dependencies["RETROFIT"]
+    compile rootProject.ext.dependencies["ADAPTER_RXJAVA2"]
+
+    //json
+    compile rootProject.ext.dependencies["FASTJSON"]
+
+    compile rootProject.ext.dependencies["STETHO"]
+    compile rootProject.ext.dependencies["STETHO_OKHTTP"]
+
+    //Room
+    compile rootProject.ext.dependencies["ROOM"]
+    //确保用kapt代替annotationProcessor，同时也要添加kotlin-kapt插件
+    kapt rootProject.ext.dependencies["ROOMPROCESS"]
+    compile rootProject.ext.dependencies["ROOM_RXJAVA"]
+
+    //anko
+    compile rootProject.ext.dependencies["ANKO"]
+    compile rootProject.ext.dependencies["ANKOLISTENER"]
+    compile rootProject.ext.dependencies["ANKO_RECYCLERVIEW"]
+    compile rootProject.ext.dependencies["ANKO_CARDVIEW"]
+    compile rootProject.ext.dependencies["ANKO_GRIDLAYOUT"]
+    compile rootProject.ext.dependencies["ANKO_DESIGN"]
+    compile rootProject.ext.dependencies["ANKO_SUPPORT_V4_COMMOMS"]
+    compile rootProject.ext.dependencies["ANKO_SUPPORT_V4"]
+    compile rootProject.ext.dependencies["ANKO_APPCOMPAT_V7"]
+
+    compile rootProject.ext.dependencies["BASERECYCLERVIEWADAPTERHELPER"]
+    compile rootProject.ext.dependencies["RECYCLERVIEW_V7"]
+
+}
