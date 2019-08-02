@@ -19,3 +19,7 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keep public class com.mvvm.project.demo.model.bean.**
+#-keep public class com.mvvm.project.demo.common.util.**
+-keep public class com.mvvm.project.demo.view.**
+-keep public class com.mvvm.project.demo.common.util.ToastUtils

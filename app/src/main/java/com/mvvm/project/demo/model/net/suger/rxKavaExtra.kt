@@ -42,63 +42,64 @@ private fun <T> Maybe<Root<T>>.afterRequest(intArray: IntArray = intArrayOf()): 
 // 500 , 1000
 private fun <T> mapper(it: Root<T>, intArray: IntArray): T {
 //    val code = it.code
-//
-//    if (code in intArray && code != 200) {
-//        throw throw ResponseError(it.code, it.message.toString())
-//    }
+    //根据获取到的json，如果业务有直接返回code 那就解析 没有就根据业务其他的判断是否请求成功
+    val code = 200
 
-//    when (code) {
-//    // 成功
-//        200 -> {
-//            val data: T? = it.data
-//            if (data == null) {
-//                val _typeParameter_: Type = it._typeParameter_
-//                val classInfo: ClassInfo = if (_typeParameter_ is Class<*>) {
-//                    ReflectUtil.getClassInfo(_typeParameter_)
-//                } else if (_typeParameter_ is ParameterizedType) {
-//                    val rawType = _typeParameter_.rawType
-//                    if (rawType is Class<*>) {
-//                        ReflectUtil.getClassInfo(rawType)
-//                    } else {
-//                        throw ResponseError(REQUEST_RETURN_TYPE_DEF_ERROR, MSG_DATA_FAILURE)
-//                    }
-//                } else if (_typeParameter_ is GenericArrayType) {//数组,提前处理了
-//                    val rawClazz: Class<*> = _typeParameter_.genericComponentType as Class<*>
-//                    return Array.newInstance(rawClazz, 0) as T
-//                } else {//其他情况不处理
-//                    throw ResponseError(REQUEST_RETURN_TYPE_DEF_ERROR, MSG_DATA_FAILURE)
-//                }
-//
-//                val voidClass: Class<VoidResult> = VoidResult::class.java
-//                //如果是 VoidResult ,直接返回
-//                if (classInfo.isOf(voidClass)) {
-//                    return VoidResult() as T
-//                }
-//
-//                //依次判断是不是集合或者Map
-//                if (classInfo.isOf(List::class.java)) {
-//                    return ArrayList<Any>() as T
-//                } else if (classInfo.isOf(Map::class.java)) {
-//                    return HashMap<Any, Any>() as T
-//                } else if (classInfo.isOf(Set::class.java)) {
-//                    return HashSet<Any>() as T
-//                } else { //抛出业务异常, -200 ,消息为未能正确获取数据
-//                    throw ResponseError(REQUEST_RETURN_TYPE_DEF_ERROR, MSG_DATA_FAILURE)
-//                }
-//            }
+    if (code in intArray && code != 200) {
+        throw throw ResponseError(it.code, it.message.toString())
+    }
+    when (code) {
+    // 成功
+        200 -> {
+            val data: T? = it.data
+            if (data == null) {
+                val _typeParameter_: Type = it._typeParameter_
+                val classInfo: ClassInfo = if (_typeParameter_ is Class<*>) {
+                    ReflectUtil.getClassInfo(_typeParameter_)
+                } else if (_typeParameter_ is ParameterizedType) {
+                    val rawType = _typeParameter_.rawType
+                    if (rawType is Class<*>) {
+                        ReflectUtil.getClassInfo(rawType)
+                    } else {
+                        throw ResponseError(REQUEST_RETURN_TYPE_DEF_ERROR, MSG_DATA_FAILURE)
+                    }
+                } else if (_typeParameter_ is GenericArrayType) {//数组,提前处理了
+                    val rawClazz: Class<*> = _typeParameter_.genericComponentType as Class<*>
+                    return Array.newInstance(rawClazz, 0) as T
+                } else {//其他情况不处理
+                    throw ResponseError(REQUEST_RETURN_TYPE_DEF_ERROR, MSG_DATA_FAILURE)
+                }
+
+                val voidClass: Class<VoidResult> = VoidResult::class.java
+                //如果是 VoidResult ,直接返回
+                if (classInfo.isOf(voidClass)) {
+                    return VoidResult() as T
+                }
+
+                //依次判断是不是集合或者Map
+                if (classInfo.isOf(List::class.java)) {
+                    return ArrayList<Any>() as T
+                } else if (classInfo.isOf(Map::class.java)) {
+                    return HashMap<Any, Any>() as T
+                } else if (classInfo.isOf(Set::class.java)) {
+                    return HashSet<Any>() as T
+                } else { //抛出业务异常, -200 ,消息为未能正确获取数据
+                    throw ResponseError(REQUEST_RETURN_TYPE_DEF_ERROR, MSG_DATA_FAILURE)
+                }
+            }
             return it.data
-//        }
+        }
 
     // 除了200成功返回it外，其他都抛出异常返回false，到errorHandle中去处理
 //        ? ->{}
     // 其他系统定义错误代码
-//        else -> {
-//            //FIXME 这里可能会报错.......
-//            ToastUtils.show("异常码：$code")
-//        }
-//    }
+        else -> {
+            //FIXME 这里可能会报错.......
+            ToastUtils.show("异常码：$code")
+        }
+    }
 
-//    throw ResponseError(it.code, it.message.toString())
+    throw ResponseError(it.code, it.message.toString())
 }
 
 /**

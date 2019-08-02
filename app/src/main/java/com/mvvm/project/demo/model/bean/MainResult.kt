@@ -11,5 +11,6 @@ import java.io.Serializable
 data class MainResult(
         @PrimaryKey(autoGenerate = true)
         var key: Int = 0,
-        var title: String = ""
+        var title: String = "",
+        var data: String = ""
 ) : Serializable

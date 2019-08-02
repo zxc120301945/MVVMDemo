@@ -6,7 +6,9 @@ import com.mvvm.project.demo.common.util.CommonUtils
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import com.mvvm.project.demo.model.net.suger.FunctionsAndActions.Consumer
+import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import java.util.concurrent.TimeUnit
 
 /**
@@ -120,7 +122,8 @@ object Requests {
             .client(getClient())//设置客户端
             .baseUrl("http://ic.snssdk.com/")//请求url
             .addConverterFactory(FastJsonConverterFactory.create())//json解析
-            .addCallAdapterFactory(JulunAdapterFactory.create())//rxjava支持
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))//rxjava支持
+//            .addCallAdapterFactory(CallAdapterFactory.create())//rxjava支持
 //            .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))//rxjava支持
             .build()
 

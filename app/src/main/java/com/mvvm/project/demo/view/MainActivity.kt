@@ -1,7 +1,6 @@
 package com.mvvm.project.demo.view
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
@@ -61,6 +60,11 @@ class MainActivity : BaseActivity() {
             it ?: return@Observer
             refreshDatas(true, it)
         })
+//
+//        mViewModel.refreshData2.observe(this, Observer {
+//            it ?: return@Observer
+//            tvDemo.text = it
+//        })
 
         mViewModel.updateData.observe(this, Observer {
             it ?: return@Observer

@@ -25,7 +25,7 @@ class LogUtils private constructor() {
         }
 
         var isDebug = BuildConfig.DEBUG//
-        private val TAG = "lingmeng"
+        private val TAG = "log"
 
         // 下面四个是默认tag的函数
         fun i(msg: String) {

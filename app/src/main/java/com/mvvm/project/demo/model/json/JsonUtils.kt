@@ -6,9 +6,6 @@ import com.alibaba.fastjson.parser.deserializer.ExtraProcessor
 import com.alibaba.fastjson.serializer.SerializerFeature
 import java.lang.reflect.Type
 
-/**
- *
- */
 object JsonUtils {
 
     internal val STANDARD_FEATURES = arrayOf(SerializerFeature.DisableCircularReferenceDetect)
@@ -125,6 +122,4 @@ object JsonUtils {
 
         }.type
     }
-
-
 }

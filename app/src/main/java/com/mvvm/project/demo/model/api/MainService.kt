@@ -12,4 +12,7 @@ interface MainService {
 
     @GET("api/2/article/v23/stream/")
     fun getJRTTList(): Observable<Root<ArrayList<MainResult>>>
+
+    @GET("api/2/article/v23/stream/")
+    fun getJRTTList2(): Observable<Root<String>>
 }
