@@ -60,11 +60,6 @@ class MainActivity : BaseActivity() {
             it ?: return@Observer
             refreshDatas(true, it)
         })
-//
-//        mViewModel.refreshData2.observe(this, Observer {
-//            it ?: return@Observer
-//            tvDemo.text = it
-//        })
 
         mViewModel.updateData.observe(this, Observer {
             it ?: return@Observer
