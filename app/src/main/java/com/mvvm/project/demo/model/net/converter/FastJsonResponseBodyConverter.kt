@@ -15,7 +15,6 @@ internal class FastJsonResponseBodyConverter<T>(private val type: Type) : Conver
     override fun convert(value: ResponseBody): T {
         try {
             val jsonString: String = value.string()
-//            println("解析数据  类型: $type , 字符串为:  $jsonString")
             var obj = JsonUtils.deserializeAsObject<T>(jsonString, type)
             if(obj != null && obj is Root<*>){
                 if(type is ParameterizedType){
@@ -23,17 +22,12 @@ internal class FastJsonResponseBodyConverter<T>(private val type: Type) : Conver
                     obj._typeParameter_ = rawType
                 }
             }
-//            println("转换：${JsonUtil.seriazileAsString(obj)}")
             return obj
         } catch (e: Exception) {
-//            e.printStackTrace()
-//            ToastHelper.showLong(LingMengApp.getApp(), "转换json错误" + e.message)
             if (e is SocketTimeoutException) {
                 ToastUtils.showErrorMessage("当前网络状况不太好哦~_~")
             }
             e.printStackTrace()
-//            Log.i("DXC","转换json错误 要转换的 字符串 ==>>> ${value.string()} , ResponseBody对象 ==>>> $value , ${e.printStackTrace()}")
-            LogUtils.i("转换json错误 要转换的 字符串 ==>>> ${value.string()} , ResponseBody对象 ==>>> $value , i")
             throw  e
 
         } finally {

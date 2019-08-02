@@ -1,52 +1,29 @@
+def supportVersion = "25.0.0"
+
 ext {
-    def lifecycle = '1.0.0'
-    def rxlifecycle = '2.1.0'
-    def frescoVersion = '1.3.0'
-    def okhttp_version = "3.8.1"
+
+    buildToolsVersion = "26.0.2"
+    compileSdkVersion = 26
+    minSdkVersion = 15
+    targetSdkVersion = 26
+
+
     def retorfit_version = "2.3.0"
+    def rxjava_version = "2.1.0"
+    def rxandroid_version = "2.0.1"
+    def okhttp_version = "3.8.1"
+    def barcodescanner_version = "1.9"
+    def androidSupportPkgVersion = '26.1.0'
     def fastJsonVersion = '1.1.57.android'
-    def roomVersion='1.0.0'
     def ankoVersion = "0.10.1"
-    def androidSupportPkgVersion = '27.1.0'
+//    def ankoVersion = "0.9.1a"
+    def frescoVersion = '1.3.0'
+    def supportLibraryVersion = '26.1.0'
+    def lifecycle = '1.0.0'
+    def roomVersion='1.0.0'
+    def svgaVersion = '2.1.1'
 
-    dependencies = [
-            KOTLIN                : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version",
-
-            CONTRAINT_LAYOUT      : 'com.android.support.constraint:constraint-layout:1.1.2',
-
-            //lifecycle
-            RXLIFECYCLE_KOTLIN    : "com.trello.rxlifecycle2:rxlifecycle-kotlin:$rxlifecycle",
-            RXLIFECYCLE_COMPONENTS: "com.trello.rxlifecycle2:rxlifecycle-components:$rxlifecycle",
-            LIFECYCLE_EXTENSION   : "android.arch.lifecycle:extensions:$lifecycle",
-
-            //fresco
-            FRESCO                : "com.facebook.fresco:fresco:$frescoVersion",
-            ANIMATED_BASE         : "com.facebook.fresco:animated-base:$frescoVersion",
-            ANIMATED_GIF          : "com.facebook.fresco:animated-gif:$frescoVersion",
-            WEBPSUPPORT           : "com.facebook.fresco:webpsupport:$frescoVersion",
-            ANIMATED_WEBP         : "com.facebook.fresco:animated-webp:$frescoVersion",
-            DRAWEE_SPAN           : "com.facebook.fresco:drawee-span:$frescoVersion",
-            IMAGEPIPELINE_OKHTTP3 : "com.facebook.fresco:imagepipeline-okhttp3:$frescoVersion",
-
-            //okhttp and retrofit
-            OKHTTP                : "com.squareup.okhttp3:okhttp:$okhttp_version",
-            LOGGING_INTERCEPTOR   : "com.squareup.okhttp3:logging-interceptor:$okhttp_version",
-            RETROFIT              : "com.squareup.retrofit2:retrofit:$retorfit_version",
-            ADAPTER_RXJAVA2       : "com.squareup.retrofit2:adapter-rxjava2:$retorfit_version",
-
-            //json
-            FASTJSON              : "com.alibaba:fastjson:$fastJsonVersion",
-
-            //Stetho  以及配合的插件
-            STETHO                : 'com.facebook.stetho:stetho:1.4.1',
-            STETHO_OKHTTP         : 'com.facebook.stetho:stetho-okhttp3:1.3.1@aar',
-
-            //Room
-            ROOM:"android.arch.persistence.room:runtime:$roomVersion",
-            ROOMPROCESS:"android.arch.persistence.room:compiler:$roomVersion",
-            // RxJava support for Room
-            ROOM_RXJAVA: "android.arch.persistence.room:rxjava2:1.0.0",
-
+    dependencies=[
             //anko相关
             ANKO : "org.jetbrains.anko:anko-sdk23:$ankoVersion",
             ANKOLISTENER:"org.jetbrains.anko:anko-sdk23-listeners:$ankoVersion",
@@ -57,9 +34,72 @@ ext {
             ANKO_SUPPORT_V4_COMMOMS: "org.jetbrains.anko:anko-support-v4-commons:$ankoVersion",
             ANKO_SUPPORT_V4 : "org.jetbrains.anko:anko-support-v4:$ankoVersion",
             ANKO_APPCOMPAT_V7 : "org.jetbrains.anko:anko-appcompat-v7:$ankoVersion",
-
-            BASERECYCLERVIEWADAPTERHELPER : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40',
-
+            //support相关
+            SUPPORT_V13 : "com.android.support:support-v13:$androidSupportPkgVersion",
+            APPCOMPAT_V7 : "com.android.support:appcompat-v7:$androidSupportPkgVersion",
             RECYCLERVIEW_V7 : "com.android.support:recyclerview-v7:$androidSupportPkgVersion",
+            CARDVIEW_V7 : "com.android.support:cardview-v7:$androidSupportPkgVersion",
+            GRIDLAYOUT_V7 : "com.android.support:gridlayout-v7:$androidSupportPkgVersion",
+            DESIGN : "com.android.support:design:$androidSupportPkgVersion",
+            //网络相关
+            RETROFIT : "com.squareup.retrofit2:retrofit:$retorfit_version",
+            ADAPTER_RXJAVA2 : "com.squareup.retrofit2:adapter-rxjava2:$retorfit_version",
+            OKHTTP : "com.squareup.okhttp3:okhttp:$okhttp_version",
+            RXJAVA : "io.reactivex.rxjava2:rxjava:$rxjava_version",
+            RXANDROID:"io.reactivex.rxjava2:rxandroid:$rxandroid_version",
+            FASTJSON : "com.alibaba:fastjson:$fastJsonVersion",
+
+            KOTLIN_STDLIB : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+            TAKEPHOTO_LIBRARY : 'com.jph.takephoto:takephoto_library:4.0.0',
+
+            SUPPORT_CORE_UTILS : "com.android.support:support-core-utils:$supportLibraryVersion}",
+            //fresco 支持
+            FRESCO : "com.facebook.fresco:fresco:$frescoVersion",
+            ANIMATED_BASE : "com.facebook.fresco:animated-base:$frescoVersion",
+            ANIMATED_GIF : "com.facebook.fresco:animated-gif:$frescoVersion",
+            WEBPSUPPORT: "com.facebook.fresco:webpsupport:$frescoVersion",
+            ANIMATED_WEBP : "com.facebook.fresco:animated-webp:$frescoVersion",
+            DRAWEE_SPAN : "com.facebook.fresco:drawee-span:$frescoVersion",
+            IMAGEPIPELINE_OKHTTP3 : "com.facebook.fresco:imagepipeline-okhttp3:$frescoVersion",
+
+            MULTIDEX : 'com.android.support:multidex:1.0.1',
+            LOGGING_INTERCEPTOR : 'com.squareup.okhttp3:logging-interceptor:3.4.1',
+            BUGLY_CRASHREPORT : 'com.tencent.bugly:crashreport:latest.release',
+            BUGLY_NATIVECRASHREPORT : 'com.tencent.bugly:nativecrashreport:latest.release',
+
+//            UMENG : 'com.umeng.analytics:analytics:latest.integration', 友盟旧的集成方式
+
+            UMENG_COMMOM: 'com.umeng.sdk:common:latest.integration',
+            UMENG_ANALYTICS:'com.umeng.sdk:analytics:latest.integration',
+            NINEOLDANDROIDS : 'com.nineoldandroids:library:2.4.0',
+            KPSWITCH : 'cn.dreamtobe.kpswitch:library:1.6.0',
+
+            CODE19 : 'com.code19.library:library:0.1.1',
+            RETROFIT2_RXJAVA2_ADAPTER : 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0',
+            CONSTRAINT_LAYOUT : 'com.android.support.constraint:constraint-layout:1.1.0',
+            EVENTBUS : 'org.greenrobot:eventbus:3.0.0',
+            AGENTWEB : 'com.just.agentweb:agentweb:1.2.5',
+            RXLIFECYCLE_KOTLIN : 'com.trello.rxlifecycle2:rxlifecycle-kotlin:2.1.0',
+            RXLIFECYCLE_COMPONENTS : 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0',
+//recyclerview adapter
+            BASERECYCLERVIEWADAPTERHELPER : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40',
+            JUNIT : 'junit:junit:4.12',
+            LEAKCANARY_ANDROID_DEBUG : 'com.squareup.leakcanary:leakcanary-android:1.6.1',
+            LEAKCANARY_ANDROID : 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1',
+            LEAKCANARY_ANDROID_FRAGMENT : 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.1',
+            //Stetho  以及配合的插件
+            STETHO:'com.facebook.stetho:stetho:1.4.1',
+            STETHO_OKHTTP:'com.facebook.stetho:stetho-okhttp3:1.3.1@aar',
+            CONVERTER_GSON:'com.squareup.retrofit2:converter-gson:2.0.0-beta4',
+            //lifecycle  extensions
+            LIFECYCLE_EXTENSION:"android.arch.lifecycle:extensions:$lifecycle",
+            ROOM:"android.arch.persistence.room:runtime:$roomVersion",
+            ROOMPROCESS:"android.arch.persistence.room:compiler:$roomVersion",
+            // RxJava support for Room
+            ROOM_RXJAVA: "android.arch.persistence.room:rxjava2:1.0.0",
+            //高斯模糊相关   https://www.jianshu.com/p/02da487a2f43
+            BLUR : "com.github.pinguo-zhouwei:EasyBlur:v1.0.0",
+            SVGA:"com.github.yyued:SVGAPlayer-Android:$svgaVersion",
+            GROWINGIO:'com.growingio.android:vds-android-agent:2.3.3@aar'
     ]
 }

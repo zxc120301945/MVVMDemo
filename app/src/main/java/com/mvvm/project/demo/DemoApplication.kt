@@ -8,7 +8,7 @@ import java.util.logging.Logger
  * Created by my on 2018/08/21 0021.
  */
 class DemoApplication : Application() {
-    private val logger = Logger.getLogger("LingMengApp")
+    private val logger = Logger.getLogger("App")
 
     companion object {
         private lateinit var application: Application
