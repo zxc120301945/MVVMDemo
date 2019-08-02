@@ -13,9 +13,6 @@ import io.reactivex.Observer;
 import io.reactivex.SingleObserver;
 import io.reactivex.disposables.Disposable;
 
-/**
- * Created by nirack on 17-5-24.
- */
 public class CancelableObservableSubscriber<T> implements Observer<T>, FlowableSubscriber<T>,
         SingleObserver<T>, MaybeObserver<T> {
 

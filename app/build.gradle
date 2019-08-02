@@ -1,9 +1,8 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'maven'
 
 android {
     compileSdkVersion 27
@@ -18,6 +17,17 @@ android {
 //        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
 
     }
+    //签名配置
+    signingConfigs {
+        release {
+        }
+
+        debug {
+            //下面将配置的跟release一致
+        }
+
+
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -26,56 +36,201 @@ android {
     }
 }
 
+
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "file://localhost/" + "C:\\Users\\my\\.m2\\repository")
+            pom.version = '1.0-SNAPSHOT'
+            pom.groupId = 'your.package'
+            pom.artifactId = 'sdk-name'
+        }
+    }
+}
+
 dependencies {
 //    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    compile rootProject.ext.dependencies["KOTLIN"]
+////    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
+//    compile rootProject.ext.dependencies["KOTLIN"]
+//
+//    compile rootProject.ext.dependencies["CONTRAINT_LAYOUT"]
+//
+//    //lifecycle
+//    compile rootProject.ext.dependencies["RXLIFECYCLE_KOTLIN"]
+//    compile rootProject.ext.dependencies["RXLIFECYCLE_COMPONENTS"]
+//    compile rootProject.ext.dependencies["LIFECYCLE_EXTENSION"]
+//
+//    //fresco 各种支持
+//    compile rootProject.ext.dependencies["FRESCO"]
+//    compile rootProject.ext.dependencies["ANIMATED_BASE"]
+//    compile rootProject.ext.dependencies["ANIMATED_GIF"]
+//    compile rootProject.ext.dependencies["ANIMATED_WEBP"]
+//    compile rootProject.ext.dependencies["WEBPSUPPORT"]
+//    compile rootProject.ext.dependencies["DRAWEE_SPAN"]
+//    compile rootProject.ext.dependencies["IMAGEPIPELINE_OKHTTP3"]
+//
+//    //网络
+//    compile rootProject.ext.dependencies["OKHTTP"]
+//    compile rootProject.ext.dependencies["LOGGING_INTERCEPTOR"]
+//    compile rootProject.ext.dependencies["RETROFIT"]
+//    compile rootProject.ext.dependencies["ADAPTER_RXJAVA2"]
+//
+//    //json
+//    compile rootProject.ext.dependencies["FASTJSON"]
+//
+//    compile rootProject.ext.dependencies["STETHO"]
+//    compile rootProject.ext.dependencies["STETHO_OKHTTP"]
+//
+//    //Room
+//    compile rootProject.ext.dependencies["ROOM"]
+//    //确保用kapt代替annotationProcessor，同时也要添加kotlin-kapt插件
+//    kapt rootProject.ext.dependencies["ROOMPROCESS"]
+//    compile rootProject.ext.dependencies["ROOM_RXJAVA"]
+//
+//    //anko
+//    compile rootProject.ext.dependencies["ANKO"]
+//    compile rootProject.ext.dependencies["ANKOLISTENER"]
+//    compile rootProject.ext.dependencies["ANKO_RECYCLERVIEW"]
+//    compile rootProject.ext.dependencies["ANKO_CARDVIEW"]
+//    compile rootProject.ext.dependencies["ANKO_GRIDLAYOUT"]
+//    compile rootProject.ext.dependencies["ANKO_DESIGN"]
+//    compile rootProject.ext.dependencies["ANKO_SUPPORT_V4_COMMOMS"]
+//    compile rootProject.ext.dependencies["ANKO_SUPPORT_V4"]
+//    compile rootProject.ext.dependencies["ANKO_APPCOMPAT_V7"]
+//
+//    compile rootProject.ext.dependencies["BASERECYCLERVIEWADAPTERHELPER"]
+//    compile rootProject.ext.dependencies["RECYCLERVIEW_V7"]
 
-    compile rootProject.ext.dependencies["CONTRAINT_LAYOUT"]
 
-    //lifecycle
-    compile rootProject.ext.dependencies["RXLIFECYCLE_KOTLIN"]
-    compile rootProject.ext.dependencies["RXLIFECYCLE_COMPONENTS"]
-    compile rootProject.ext.dependencies["LIFECYCLE_EXTENSION"]
+//    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
+//    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:1.1.51"
+//
+//    compile 'com.android.support.constraint:constraint-layout:1.1.2'
+//
+//    //lifecycle
+//    compile "com.trello.rxlifecycle2:rxlifecycle-kotlin:2.1.0"
+//    compile "com.trello.rxlifecycle2:rxlifecycle-components:2.1.0"
+//    compile "android.arch.lifecycle:extensions:1.0.0"
+//
+//    //fresco 各种支持
+//    compile "com.facebook.fresco:fresco:1.3.0"
+//    compile "com.facebook.fresco:animated-base:1.3.0"
+//    compile "com.facebook.fresco:animated-gif:1.3.0"
+//    compile "com.facebook.fresco:webpsupport:1.3.0"
+//    compile "com.facebook.fresco:animated-webp:1.3.0"
+//    compile "com.facebook.fresco:drawee-span:1.3.0"
+//    compile "com.facebook.fresco:imagepipeline-okhttp3:1.3.0"
+//
+//    //网络
+//    compile "com.squareup.okhttp3:okhttp:3.8.1"
+//    compile "com.squareup.okhttp3:logging-interceptor:3.8.1"
+//    compile "com.squareup.retrofit2:retrofit:2.3.0"
+//    compile "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
+//
+//    //json
+//    compile "com.alibaba:fastjson:1.1.57.android"
+//
+//    compile 'com.facebook.stetho:stetho:1.4.1'
+//    compile 'com.facebook.stetho:stetho-okhttp3:1.3.1@aar'
+//
+//    //Room
+//    compile "android.arch.persistence.room:runtime:1.0.0"
+//    //确保用kapt代替annotationProcessor，同时也要添加kotlin-kapt插件
+//    kapt "android.arch.persistence.room:compiler:1.0.0"
+//    compile "android.arch.persistence.room:rxjava2:1.0.0"
+//
+//    //anko
+//    compile "org.jetbrains.anko:anko-sdk23:0.10.1"
+//    compile "org.jetbrains.anko:anko-sdk23-listeners:0.10.1"
+//    compile "org.jetbrains.anko:anko-recyclerview-v7:0.10.1"
+//    compile "org.jetbrains.anko:anko-cardview-v7:0.10.1"
+//    compile "org.jetbrains.anko:anko-gridlayout-v7:0.10.1"
+//    compile "org.jetbrains.anko:anko-design:0.10.1"
+//    compile "org.jetbrains.anko:anko-support-v4-commons:0.10.1"
+//    compile "org.jetbrains.anko:anko-support-v4:0.10.1"
+//    compile "org.jetbrains.anko:anko-appcompat-v7:0.10.1"
+//
+//    compile "com.android.support:recyclerview-v7:27.1.0"
 
-    //fresco 各种支持
-    compile rootProject.ext.dependencies["FRESCO"]
-    compile rootProject.ext.dependencies["ANIMATED_BASE"]
-    compile rootProject.ext.dependencies["ANIMATED_GIF"]
-    compile rootProject.ext.dependencies["ANIMATED_WEBP"]
-    compile rootProject.ext.dependencies["WEBPSUPPORT"]
-    compile rootProject.ext.dependencies["DRAWEE_SPAN"]
-    compile rootProject.ext.dependencies["IMAGEPIPELINE_OKHTTP3"]
-
-    //网络
-    compile rootProject.ext.dependencies["OKHTTP"]
-    compile rootProject.ext.dependencies["LOGGING_INTERCEPTOR"]
-    compile rootProject.ext.dependencies["RETROFIT"]
-    compile rootProject.ext.dependencies["ADAPTER_RXJAVA2"]
-
-    //json
-    compile rootProject.ext.dependencies["FASTJSON"]
-
-    compile rootProject.ext.dependencies["STETHO"]
-    compile rootProject.ext.dependencies["STETHO_OKHTTP"]
-
-    //Room
-    compile rootProject.ext.dependencies["ROOM"]
-    //确保用kapt代替annotationProcessor，同时也要添加kotlin-kapt插件
-    kapt rootProject.ext.dependencies["ROOMPROCESS"]
-    compile rootProject.ext.dependencies["ROOM_RXJAVA"]
-
-    //anko
-    compile rootProject.ext.dependencies["ANKO"]
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    //    compile(name: 'LiteAVSDK_Smart', ext: 'aar')
+    //    compile "com.squareup.flow:flow:$flowVewsion"
     compile rootProject.ext.dependencies["ANKOLISTENER"]
+    compile rootProject.ext.dependencies["ANKO"]
     compile rootProject.ext.dependencies["ANKO_RECYCLERVIEW"]
     compile rootProject.ext.dependencies["ANKO_CARDVIEW"]
     compile rootProject.ext.dependencies["ANKO_GRIDLAYOUT"]
     compile rootProject.ext.dependencies["ANKO_DESIGN"]
-    compile rootProject.ext.dependencies["ANKO_SUPPORT_V4_COMMOMS"]
     compile rootProject.ext.dependencies["ANKO_SUPPORT_V4"]
+    compile rootProject.ext.dependencies["ANKO_SUPPORT_V4_COMMOMS"]
     compile rootProject.ext.dependencies["ANKO_APPCOMPAT_V7"]
-
-    compile rootProject.ext.dependencies["BASERECYCLERVIEWADAPTERHELPER"]
+    compile rootProject.ext.dependencies["SUPPORT_V13"]
+    compile rootProject.ext.dependencies["APPCOMPAT_V7"]
     compile rootProject.ext.dependencies["RECYCLERVIEW_V7"]
+    compile rootProject.ext.dependencies["CARDVIEW_V7"]
+    compile rootProject.ext.dependencies["GRIDLAYOUT_V7"]
+    compile rootProject.ext.dependencies["DESIGN"]
+    //http请求
+    compile rootProject.ext.dependencies["RETROFIT"]
+    compile rootProject.ext.dependencies["ADAPTER_RXJAVA2"]
+    compile rootProject.ext.dependencies["OKHTTP"]
+    //日志
+    compile rootProject.ext.dependencies["RXJAVA"]
+    compile rootProject.ext.dependencies["RXANDROID"]
+    //json解析 FASTJSON
+    compile rootProject.ext.dependencies["FASTJSON"]
+    //其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.2.0 KOTLIN_STDLIB
+    compile rootProject.ext.dependencies["KOTLIN_STDLIB"]
+    // 输入法布局兼容工具类
+    // 可兼容 请求权限 头像获取  TAKEPHOTO_LIBRARY
+    compile(rootProject.ext.dependencies["TAKEPHOTO_LIBRARY"], {
+        exclude group: 'com.github.bumptech.glide'
+        exclude group: 'io.reactivex'
+    })
+    compile rootProject.ext.dependencies["SUPPORT_CORE_UTILS"]
+    //fresco 的支持 FRESCO
+//    compile rootProject.ext.dependencies["FRESCO"]
+//    compile rootProject.ext.dependencies["ANIMATED_BASE"]
+//    compile rootProject.ext.dependencies["ANIMATED_GIF"]
+//    compile rootProject.ext.dependencies["WEBPSUPPORT"]
+//    compile rootProject.ext.dependencies["ANIMATED_WEBP"]
+//    compile rootProject.ext.dependencies["DRAWEE_SPAN"]
+    //    compile "com.kyleduo.switchbutton:library:1.4.6";
+    compile rootProject.ext.dependencies["IMAGEPIPELINE_OKHTTP3"]
+//    compile rootProject.ext.dependencies["MULTIDEX"]
+    compile rootProject.ext.dependencies["LOGGING_INTERCEPTOR"]
+//    compile rootProject.ext.dependencies["BUGLY_CRASHREPORT"]
+//    compile rootProject.ext.dependencies["BUGLY_NATIVECRASHREPORT"]
+    //    compile rootProject.ext.dependencies["UMENG"]
+//    compile rootProject.ext.dependencies["UMENG_COMMOM"]
+//    compile rootProject.ext.dependencies["UMENG_ANALYTICS"]
+    compile rootProject.ext.dependencies["NINEOLDANDROIDS"]
+    compile rootProject.ext.dependencies["KPSWITCH"]
+    compile rootProject.ext.dependencies["CODE19"]
+    compile rootProject.ext.dependencies["RETROFIT2_RXJAVA2_ADAPTER"]
+    compile rootProject.ext.dependencies["CONSTRAINT_LAYOUT"]
+//    compile rootProject.ext.dependencies["EVENTBUS"]
+    //    compile rootProject.ext.dependencies["AGENTWEB"]
+    compile rootProject.ext.dependencies["RXLIFECYCLE_KOTLIN"]
+    compile rootProject.ext.dependencies["RXLIFECYCLE_COMPONENTS"]
+    compile rootProject.ext.dependencies["ROOM"]
+    kapt rootProject.ext.dependencies["ROOMPROCESS"]
+    compile rootProject.ext.dependencies["ROOM_RXJAVA"]
+//    compile rootProject.ext.dependencies["SVGA"]
+    //   adapter
+    compile rootProject.ext.dependencies["BASERECYCLERVIEWADAPTERHELPER"]
+//    compile rootProject.ext.dependencies["GROWINGIO"]
+    //chrome  打印 网络请求日志
+    debugCompile rootProject.ext.dependencies["STETHO"]
+    compile rootProject.ext.dependencies["STETHO_OKHTTP"]
+    compile rootProject.ext.dependencies["CONVERTER_GSON"]
+    compile rootProject.ext.dependencies["LIFECYCLE_EXTENSION"]
+//    testCompile rootProject.ext.dependencies["JUNIT"]
+//    debugCompile rootProject.ext.dependencies["LEAKCANARY_ANDROID_DEBUG"]
+//    releaseCompile rootProject.ext.dependencies["LEAKCANARY_ANDROID"]
 
 }

@@ -20,7 +20,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
  * Created by nirack on 17-6-1.
  */
 
-public class JulunAdapterFactory extends CallAdapter.Factory  {
+public class CallAdapterFactory extends CallAdapter.Factory  {
     private static class JulunCallAdapter<SOURCE> implements CallAdapter<R, SOURCE>{
         private final CallAdapter realAdapter;
 
@@ -60,12 +60,12 @@ public class JulunAdapterFactory extends CallAdapter.Factory  {
 
     private final CallAdapter.Factory realFactory;
 
-    private JulunAdapterFactory(CallAdapter.Factory realFactory) {
+    private CallAdapterFactory(CallAdapter.Factory realFactory) {
         this.realFactory = realFactory;
     }
 
-    public static JulunAdapterFactory create(){
-        return new JulunAdapterFactory (RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()));
+    public static CallAdapterFactory create(){
+        return new CallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()));
     }
     @Override
     public CallAdapter<?, ?> get (Type type, Annotation[] annotations, Retrofit retrofit) {
